@@ -48,7 +48,7 @@ gen_data = function(N, params)  {
 }
 ```
 
-We're going to use a linear mixed effects model to fit this data and find the bias in the estimated fixed gradient $\beta_1$. Firstly, a single threaded implementation of this:
+We're going to use a linear mixed effects model to fit this data and find the bias in the estimated fixed gradient $$\beta_1$$. Firstly, a single threaded implementation of this:
 
 ```R
 library(lme4) # library containing lmer
