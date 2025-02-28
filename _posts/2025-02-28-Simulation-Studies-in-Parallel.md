@@ -15,12 +15,15 @@ This approach to running simulation studies, or any task that can be split up in
 There are lots of very sophisticated parallelisation methods that can speed up all sorts of complicated tasks but that's not typically the kind of thing that a data scientist or statistician will want to spend a lot of time implementing. We need to balance the time spent developing the analysis code against the time it takes to run, and how many times the programme needs to run (with many simulation studies only needing to be performed once!). We are looking at the low hanging fruit here - splitting up a task across multiple cores where the tasks themselves are completely independent and don't need to share any data or parameters with each other is pretty easy in most programming environments, and can lead to big improvements in performance. 
 
 Let's look at a simple example: Suppose we have some data where there is one independent variable and one response variable. We also have a group variable and we expect there to be a linear relationship between response and independent variables. The data generating process might look like this:
+
 $$
 y_i = \beta_0 + \left(\beta_{1} + \gamma_{1j} \right) X_i + \gamma_{0j} + \epsilon_i
 $$
-There is a response $y_i$, an independent variable $X_i$ and a noise term $\epsilon_i$ for each individual $i$. We have fixed effects $\beta_0$ and $\beta_1$, and a random intercept $\gamma_{0j}$ , a random slope $\gamma_{1j}$ for each group $j$.
+
+There is a response $$y_i$$, an independent variable $$X_i$$ and a noise term $$\epsilon_i$$ for each individual $$i$$. We have fixed effects $$\beta_0$$ and $$\beta_1$$, and a random intercept $$\gamma_{0j}$$ , a random slope $$\gamma_{1j}$$ for each group $$j$$.
 
 In code:
+
 ```R
 gen_data = function(N, params)  {
   
@@ -42,7 +45,8 @@ gen_data = function(N, params)  {
       random_slope=random_slope[rand_group]
     )
   )
-}```
+}
+```
 
 We're going to use a linear mixed effects model to fit this data and find the bias in the estimated fixed gradient $\beta_1$. Firstly, a single threaded implementation of this:
 
@@ -96,7 +100,7 @@ There is also another gotcha - languages like `R` are interpreted languages, and
 
 There are some considerations to make before parallelising everything! Remember adding threads increases the memory requirements of your computation, so if you are doing something particularly memory intensive in your loop then adding threads may make your computer run out of memory. Also, some functions and models available in `R` and other environments are themselves multithreaded. If you are calling one of those functions in the loop that you're considering parallelising you might find your programme is running as efficiently as it can already.  
 
-On my machine (M2 mac) the single threaded implementation above takes 23.3 seconds, while the parallel implementation running on all available cores takes 9.4 seconds. Not bad for a change to 5 lines. Also note that this is not a tremendously intensive example. The more time each iteration takes the better the saving will be, up to a maximum theoretical improvement of $t_{parallel} \approx \frac{t_{serial}}{n_{threads}}$.
+On my machine (M2 mac) the single threaded implementation above takes 23.3 seconds, while the parallel implementation running on all available cores takes 9.4 seconds. Not bad for a change to 5 lines. Also note that this is not a tremendously intensive example. The more time each iteration takes the better the saving will be, up to a maximum theoretical improvement of $$t_{parallel} \approx \frac{t_{serial}}{n_{threads}}$$.
 
 Some additional resources:
 - [Guidance on how to conduct simulation studies](https://pubmed.ncbi.nlm.nih.gov/16947139/)
