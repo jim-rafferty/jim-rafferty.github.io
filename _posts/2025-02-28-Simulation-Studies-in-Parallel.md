@@ -1,6 +1,6 @@
-## Running Simulation Studies in Parallel
+## Running Parallel Simulation Studies in R
 
-A Simulation study is an example of a statistical task that can be very time consuming but is also a critical aspect of model development - a newly developed model must be shown to behave well with a known data generating process, and produce good estimates of parameters that would be expected in the real world so results can be trusted when the model is used on real data.
+A simulation study is an example of a statistical task that can be very time consuming but is also a critical aspect of model development - a newly developed model must be shown to behave well with a known data generating process, and produce good estimates of parameters that would be expected in the real world so results can be trusted when the model is used on real data.
 
 These studies typically work by fitting a model to many synthetic datasets, which programmatically can be done using a loop:
 ```R
