@@ -1,6 +1,6 @@
 ## Running Parallel Simulation Studies in Python
 
-In my [[2025-02-28-Simulation-Studies-in-Parallel|last blog]] I talked about how to parallelise a for loop in `R`. This is just a quick update to show how to do the same thing in python using `joblib`. `Python` is a similar language to `R` in that it is interpreted and multithreading must be done by spawning new processes. Thankfully, `joblib` removes most of the pain to doing this that used to exist, but there is a little bit of syntax that is not standard and easy to forget. 
+In my [last blog](https://jim-rafferty.github.io/2025/02/28/Simulation-Studies-in-Parallel.html) I talked about how to parallelise a for loop in `R`. This is just a quick update to show how to do the same thing in python using `joblib`. `Python` is a similar language to `R` in that it is interpreted and multithreading must be done by spawning new processes. Thankfully, `joblib` removes most of the pain to doing this that used to exist, but there is a little bit of syntax that is not standard and easy to forget. 
 
 First, library imports and data generating function
 

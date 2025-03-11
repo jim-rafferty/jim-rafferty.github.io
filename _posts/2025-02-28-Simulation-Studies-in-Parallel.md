@@ -102,7 +102,7 @@ There are some considerations to make before parallelising everything! Remember 
 
 On my machine (M2 mac) the single threaded implementation above takes 23.3 seconds, while the parallel implementation running on all available cores takes 9.4 seconds. Not bad for a change to 5 lines. Also note that this is not a tremendously intensive example. The more time each iteration takes the better the saving will be, up to a maximum theoretical improvement of $$t_{parallel} \approx \frac{t_{serial}}{n_{threads}}$$.
 
-This can also be done [[2025-03-11-Simulation-Studies-in-Python|in Python]].
+This can also be done [in Python](https://jim-rafferty.github.io/2025/03/11/Simulation-Studies-in-Python.html).
 
 Some additional resources:
 - [Guidance on how to conduct simulation studies](https://pubmed.ncbi.nlm.nih.gov/16947139/)
